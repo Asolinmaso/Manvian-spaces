@@ -91,7 +91,7 @@ export default function Contact() {
                   Address
                 </h3>
                 <p className="mt-2 text-white/80 text-base sm:text-2xl leading-7 sm:leading-[29px]">
-                  1st floor, No.4, Alamathi main road, New vellanur, Avadi,
+                  No.4, 1st floor, Alamathi main road, New vellanur, Avadi,
                   Chennai-600062
                 </p>
               </div>

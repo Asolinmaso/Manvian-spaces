@@ -67,7 +67,47 @@ const features = [
   { num: "03", title: "Purposeful Growth" },
 ];
 
+type Amenity = (typeof amenities)[number];
+
+function AmenityCard({
+  amenity,
+  className = "",
+}: {
+  amenity: Amenity;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex flex-col items-start p-6 gap-8 rounded-[24px] ${
+        amenity.variant === "highlight"
+          ? "bg-gradient-to-br from-primary to-[#A1EBFF] shadow-[8px_8px_20px_rgba(0,0,0,0.25),inset_-2px_-2px_20px_#FFFFFF,inset_2px_2px_20px_rgba(0,0,0,0.4)]"
+          : "bg-gradient-to-br from-[#EAFAFF] to-[#DFF1F5]"
+      } ${className}`}
+    >
+      <div className="relative w-[80px] h-[80px] flex-shrink-0">
+        <Image src={amenity.image} alt={amenity.title} width={80} height={80} />
+      </div>
+      <p
+        className={`text-[24px] leading-[29px] ${
+          amenity.variant === "highlight"
+            ? "font-semibold text-white"
+            : "font-normal text-primary"
+        }`}
+      >
+        {amenity.title}
+      </p>
+    </div>
+  );
+}
+
 export default function Home() {
+  const wifiAmenity = amenities.find((a) => a.key === "wifi")!;
+  const availableAmenity = amenities.find((a) => a.key === "available")!;
+  const coffeeAmenity = amenities.find((a) => a.key === "coffee")!;
+  const parkingAmenity = amenities.find((a) => a.key === "parking")!;
+  const powerAmenity = amenities.find((a) => a.key === "power")!;
+  const loungeAmenity = amenities.find((a) => a.key === "lounge")!;
+
   return (
     <div className="relative min-h-screen bg-white w-full overflow-hidden">
       {/* Decorative blurred ellipses */}
@@ -90,7 +130,7 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(/images/banner_bg.png)",
+              "url(/images/banner_bg.png)",
           }}
         />
         <div className="relative min-h-[520px] lg:min-h-[620px] flex flex-col items-center justify-center text-center px-4 sm:px-6">
@@ -111,8 +151,11 @@ export default function Home() {
             <p className="text-[#676767] text-lg sm:text-2xl font-normal mb-2">
               Inspiring Workspaces
             </p>
-            <h2 className="text-primary text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[85px] mb-6">
-              Spaces Designed for How You Work
+            <h2 className="text-2xl sm:text-3xl lg:text-[48px] font-semibold leading-tight lg:leading-[58px] mb-6 max-w-[608px]">
+              <span className="text-primary">Spaces</span>{" "}
+              <span className="">Designed</span>{" "}
+              <span className="">for How </span>{" "}
+              <span className="text-primary">You Work</span>
             </h2>
             <div className="relative w-full max-w-[608px] aspect-[608/296] rounded-2xl overflow-hidden bg-[#CECECE]">
               <Image
@@ -176,54 +219,20 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center gap-8 mt-12">
-          <button
-            type="button"
-            aria-label="Previous"
-            className="w-[60px] h-[60px] rounded-full bg-white border-[1.5px] border-[#676767] flex items-center justify-center text-[#676767]"
+        <div className="flex justify-center mt-12">
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center px-6 py-4 bg-primary text-white font-semibold text-[20px] rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="rotate-90"
-            >
-              <path
-                d="M7 10L12 15L17 10"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            aria-label="Next"
-            className="w-[60px] h-[60px] rounded-full bg-primary flex items-center justify-center text-white"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="-rotate-90"
-            >
-              <path
-                d="M7 10L12 15L17 10"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+            Explore Services
+          </Link>
         </div>
       </section>
 
       {/* Amenities Section */}
       <section className="relative w-full py-16 px-4 sm:px-6 lg:px-[100px]">
-        <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] max-w-[608px]">
+        <div className="max-w-[1240px] mx-auto lg:hidden">
+          <h2 className="text-4xl sm:text-5xl font-semibold leading-tight max-w-[608px]">
             <span className="text-primary">Amenities </span>
             <span className="text-[#343434]">offered</span>
             <br />
@@ -233,26 +242,45 @@ export default function Home() {
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {amenities.map((a) => (
-              <div
-                key={a.key}
-                className={`flex flex-col items-start p-6 gap-6 rounded-[24px] ${
-                  a.variant === "highlight"
-                    ? "bg-gradient-to-br from-primary to-[#A1EBFF] text-white shadow-[8px_8px_20px_rgba(0,0,0,0.25)]"
-                    : "bg-gradient-to-br from-[#EAFAFF] to-[#DFF1F5] text-primary"
-                }`}
-              >
-                <div className="relative w-[64px] h-[64px] sm:w-[80px] sm:h-[80px] flex-shrink-0">
-                  <Image src={a.image} alt={a.title} width={80} height={80} />
-                </div>
-                <p
-                  className={`text-lg sm:text-[24px] leading-snug sm:leading-[29px] ${
-                    a.variant === "highlight" ? "font-semibold text-white" : "font-normal"
-                  }`}
-                >
-                  {a.title}
-                </p>
-              </div>
+              <AmenityCard key={a.key} amenity={a} />
             ))}
+          </div>
+        </div>
+
+        <div className="hidden lg:block">
+          <div className="relative mx-auto max-w-[1336px] h-[680px]">
+            <h2 className="absolute left-[48px] top-0 text-[64px] leading-[78px] font-semibold max-w-[608px]">
+              <span className="text-primary">Amenities </span>
+              <span className="text-[#343434]">offered</span>
+              <br />
+              <span className="text-[#343434]">at the </span>
+              <span className="text-primary">premises</span>
+            </h2>
+
+            <AmenityCard
+              amenity={wifiAmenity}
+              className="absolute left-[684px] top-[112px] w-[310px] h-[218px]"
+            />
+            <AmenityCard
+              amenity={availableAmenity}
+              className="absolute left-[684px] top-[362px] w-[310px] h-[189px]"
+            />
+            <AmenityCard
+              amenity={coffeeAmenity}
+              className="absolute left-0 top-[374px] w-[310px] h-[218px]"
+            />
+            <AmenityCard
+              amenity={parkingAmenity}
+              className="absolute left-[1026px] top-[216px] w-[310px] h-[218px]"
+            />
+            <AmenityCard
+              amenity={powerAmenity}
+              className="absolute left-[342px] top-[238px] w-[310px] h-[189px]"
+            />
+            <AmenityCard
+              amenity={loungeAmenity}
+              className="absolute left-[342px] top-[459px] w-[310px] h-[218px]"
+            />
           </div>
         </div>
       </section>
