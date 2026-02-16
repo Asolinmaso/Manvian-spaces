@@ -2,6 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  FadeInUp,
+  HeroText,
+  StaggerContainer,
+  StaggerItem,
+  HoverScale,
+  ImageReveal,
+} from "@/components/animations";
 
 const services = [
   {
@@ -134,91 +142,104 @@ export default function Home() {
           }}
         />
         <div className="relative min-h-[520px] lg:min-h-[620px] flex flex-col items-center justify-center text-center px-4 sm:px-6">
-          <p className="text-white text-lg sm:text-2xl font-normal mb-3 sm:mb-4">
-            Space with Opportunities
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] max-w-[722px]">
-            <span className="text-white">Work Starts With the </span>
-            <span className="text-primary">Right Space.</span>
-          </h1>
+          <HeroText>
+            <p className="text-white text-lg sm:text-2xl font-normal mb-3 sm:mb-4">
+              Space with Opportunities
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] max-w-[722px]">
+              <span className="text-white">Work Starts With the </span>
+              <span className="text-primary">Right Space.</span>
+            </h1>
+          </HeroText>
         </div>
       </section>
 
       {/* Inspiring Workspaces Section */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] py-16 lg:py-20 max-w-[1440px] mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <p className="text-[#676767] text-lg sm:text-2xl font-normal mb-2">
-              Inspiring Workspaces
-            </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[48px] font-semibold leading-tight lg:leading-[58px] mb-6 max-w-[608px]">
-              <span className="text-primary">Spaces</span>{" "}
-              <span className="">Designed</span>{" "}
-              <span className="">for How </span>{" "}
-              <span className="text-primary">You Work</span>
-            </h2>
-            <div className="relative w-full max-w-[608px] aspect-[608/296] rounded-2xl overflow-hidden bg-[#CECECE]">
-              <Image
-                src="/images/home_knowmore.png"
-                alt="Collaborative workspace"
-                fill
-                className="object-cover object-center"
-              />
-            </div>
-          </div>
-          <div className="lg:pt-0 pt-4">
-            <p className="text-[#676767] text-lg sm:text-2xl leading-8 sm:leading-9 mb-8 sm:mb-10 max-w-[592px]">
-              At Manvian Spaces, we create more than just workspaces. We build
-              flexible, thoughtfully designed environments where individuals and
-              businesses come together to collaborate, innovate, and grow —
-              supported by a strong, community-first culture.
-            </p>
-            <div className="flex flex-col gap-4 mb-10">
-              {features.map((f) => (
-                <div key={f.num} className="flex items-center gap-4">
-                  <span className="text-primary font-bold text-lg sm:text-2xl">{f.num}</span>
-                  <span className="text-[#343434] font-semibold text-lg sm:text-2xl">
-                    {f.title}
-                  </span>
+          <FadeInUp>
+            <div>
+              <p className="text-[#676767] text-lg sm:text-2xl font-normal mb-2">
+                Inspiring Workspaces
+              </p>
+              <h2 className="text-2xl sm:text-3xl lg:text-[48px] font-semibold leading-tight lg:leading-[58px] mb-6 max-w-[608px]">
+                <span className="text-primary">Spaces</span>{" "}
+                <span className="">Designed</span>{" "}
+                <span className="">for How </span>{" "}
+                <span className="text-primary">You Work</span>
+              </h2>
+              <ImageReveal>
+                <div className="relative w-full max-w-[608px] aspect-[608/296] rounded-2xl overflow-hidden bg-[#CECECE]">
+                  <Image
+                    src="/images/home_knowmore.png"
+                    alt="Collaborative workspace"
+                    fill
+                    className="object-cover object-center"
+                  />
                 </div>
-              ))}
+              </ImageReveal>
             </div>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center px-6 py-4 bg-primary text-white font-bold text-lg sm:text-2xl rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity w-fit"
-            >
-              Know More
-            </Link>
-          </div>
+          </FadeInUp>
+          <FadeInUp delay={0.15}>
+            <div className="lg:pt-0 pt-4">
+              <p className="text-[#676767] text-lg sm:text-2xl leading-8 sm:leading-9 mb-8 sm:mb-10 max-w-[592px]">
+                At Manvian Spaces, we create more than just workspaces. We build
+                flexible, thoughtfully designed environments where individuals and
+                businesses come together to collaborate, innovate, and grow —
+                supported by a strong, community-first culture.
+              </p>
+              <StaggerContainer className="flex flex-col gap-4 mb-10" staggerDelay={0.12}>
+                {features.map((f) => (
+                  <StaggerItem key={f.num} className="flex items-center gap-4">
+                    <span className="text-primary font-bold text-lg sm:text-2xl">{f.num}</span>
+                    <span className="text-[#343434] font-semibold text-lg sm:text-2xl">
+                      {f.title}
+                    </span>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center px-6 py-4 bg-primary text-white font-bold text-lg sm:text-2xl rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity w-fit"
+              >
+                Know More
+              </Link>
+            </div>
+          </FadeInUp>
         </div>
       </section>
 
       {/* Smart spaces Section */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-[100px]">
-        <p className="text-center text-[#676767] text-lg sm:text-2xl font-normal mb-4">
-          Built for Work
-        </p>
-        <h2 className="text-center text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] mb-10 sm:mb-12 max-w-[1088px] mx-auto">
-          <span className="text-[#343434]">Smart spaces. </span>
-          <span className="text-primary">Seamless services.</span>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1240px] mx-auto">
+        <FadeInUp>
+          <p className="text-center text-[#676767] text-lg sm:text-2xl font-normal mb-4">
+            Built for Work
+          </p>
+          <h2 className="text-center text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] mb-10 sm:mb-12 max-w-[1088px] mx-auto">
+            <span className="text-[#343434]">Smart spaces. </span>
+            <span className="text-primary">Seamless services.</span>
+          </h2>
+        </FadeInUp>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1240px] mx-auto" staggerDelay={0.1}>
           {services.map((s) => (
-            <div key={s.title} className="w-full flex flex-col">
-              <div className="relative w-full aspect-[292/382] rounded-[24px] overflow-hidden">
-                <Image
-                  src={s.image}
-                  alt={s.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <p className="mt-4 px-2 sm:px-4 text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] font-normal">
-                {s.title}
-              </p>
-            </div>
+            <StaggerItem key={s.title}>
+              <HoverScale className="w-full flex flex-col">
+                <div className="relative w-full aspect-[292/382] rounded-[24px] overflow-hidden">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
+                <p className="mt-4 px-2 sm:px-4 text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] font-normal">
+                  {s.title}
+                </p>
+              </HoverScale>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
+        <FadeInUp delay={0.2}>
         <div className="flex justify-center mt-12">
           <Link
             href="/services"
@@ -227,11 +248,13 @@ export default function Home() {
             Explore Services
           </Link>
         </div>
+        </FadeInUp>
       </section>
 
       {/* Amenities Section */}
       <section className="relative w-full py-16 px-4 sm:px-6 lg:px-[100px]">
         <div className="max-w-[1240px] mx-auto lg:hidden">
+          <FadeInUp>
           <h2 className="text-4xl sm:text-5xl font-semibold leading-tight max-w-[608px]">
             <span className="text-primary">Amenities </span>
             <span className="text-[#343434]">offered</span>
@@ -239,16 +262,22 @@ export default function Home() {
             <span className="text-[#343434]">at the </span>
             <span className="text-primary">premises</span>
           </h2>
+          </FadeInUp>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
             {amenities.map((a) => (
-              <AmenityCard key={a.key} amenity={a} />
+              <StaggerItem key={a.key}>
+                <HoverScale>
+                  <AmenityCard amenity={a} />
+                </HoverScale>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
 
         <div className="hidden lg:block">
           <div className="relative mx-auto max-w-[1336px] h-[680px]">
+            <FadeInUp>
             <h2 className="absolute left-[48px] top-0 text-[64px] leading-[78px] font-semibold max-w-[608px]">
               <span className="text-primary">Amenities </span>
               <span className="text-[#343434]">offered</span>
@@ -256,6 +285,7 @@ export default function Home() {
               <span className="text-[#343434]">at the </span>
               <span className="text-primary">premises</span>
             </h2>
+            </FadeInUp>
 
             <AmenityCard
               amenity={wifiAmenity}
@@ -287,6 +317,7 @@ export default function Home() {
 
       {/* Book Now CTA */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] py-16">
+        <FadeInUp>
         <div className="relative max-w-[1240px] mx-auto rounded-[32px] lg:rounded-[40px] overflow-hidden bg-[#343434]">
           <div className="grid lg:grid-cols-2">
             <div className="relative p-8 sm:p-10 lg:p-[60px]">
@@ -322,6 +353,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </FadeInUp>
       </section>
 
       <Footer />

@@ -2,6 +2,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
+import {
+  FadeInUp,
+  HeroText,
+  ImageReveal,
+} from "@/components/animations";
 
 export default function Contact() {
   return (
@@ -27,6 +32,7 @@ export default function Contact() {
       {/* Hero / Banner */}
       <section className="relative w-full overflow-hidden min-h-[662px]">
         <div className="absolute inset-0 bg-black/60" />
+        <ImageReveal className="absolute inset-0">
         <Image
           src="/images/Contact_Banner.png"
           alt=""
@@ -35,10 +41,12 @@ export default function Contact() {
           className="object-cover object-center"
           sizes="100vw"
         />
+        </ImageReveal>
         <div className="relative z-10 pt-4 px-4 sm:px-6 lg:px-[100px]">
           <Header activePage="Contact" inBanner />
         </div>
         <div className="relative z-10 min-h-[420px] sm:min-h-[400px] flex flex-col items-center justify-center text-center px-4 sm:px-6 -mt-4">
+          <HeroText>
           <h1 className="text-3xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] text-white max-w-[586px]">
             Get in <span className="text-primary">Touch</span>
             <br />
@@ -49,6 +57,7 @@ export default function Contact() {
             <br className="hidden sm:block" />
             We&apos;re here to help you find the perfect space.
           </p>
+          </HeroText>
          
         </div>
       </section>
@@ -57,11 +66,14 @@ export default function Contact() {
       <section className="relative px-4 sm:px-6 lg:px-[100px] py-12 sm:py-16">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Form */}
+          <FadeInUp>
           <div className="w-full">
             <ContactForm />
           </div>
+          </FadeInUp>
 
           {/* Info card */}
+          <FadeInUp delay={0.15}>
           <div
             className="w-full rounded-2xl p-6 sm:p-8 text-white"
             style={{
@@ -97,11 +109,13 @@ export default function Contact() {
               </div>
             </div>
           </div>
+          </FadeInUp>
         </div>
       </section>
 
       {/* Map */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] pb-20">
+        <FadeInUp>
         <div className="max-w-[1240px] mx-auto">
           <div className="relative w-full overflow-hidden rounded-2xl border border-black/10">
             <div className="absolute inset-0 bg-black/10 pointer-events-none" aria-hidden />
@@ -114,6 +128,7 @@ export default function Contact() {
             />
           </div>
         </div>
+        </FadeInUp>
       </section>
 
       <Footer />

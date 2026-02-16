@@ -2,6 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  FadeInUp,
+  HeroText,
+  ImageReveal,
+  StaggerContainer,
+  StaggerItem,
+  HoverScale,
+} from "@/components/animations";
 
 const serviceList = [
   {
@@ -270,6 +278,7 @@ export default function Services() {
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-[100px] pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 lg:pb-20">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <HeroText>
             <div>
               <h1 className="text-3xl sm:text-4xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] mb-6 max-w-[597px]">
                 <span className="text-primary">Smart, Affordable</span>{" "}
@@ -294,6 +303,8 @@ export default function Services() {
                 </Link>
               </div>
             </div>
+            </HeroText>
+            <ImageReveal>
             <div className="relative min-h-[280px] sm:min-h-[400px] lg:min-h-[552px] rounded-xl overflow-hidden bg-[#BEBEBE]">
               <Image
                 src="/images/home_knowmore.png"
@@ -303,6 +314,7 @@ export default function Services() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
+            </ImageReveal>
           </div>
         </div>
       </section>
@@ -314,8 +326,8 @@ export default function Services() {
             const isReversed = i % 2 === 1;
 
             return (
+              <FadeInUp key={service.title} delay={i * 0.05}>
               <div
-                key={service.title}
                 className={`flex flex-col gap-8 lg:gap-12 ${
                   isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
                 } items-center`}
@@ -373,6 +385,7 @@ export default function Services() {
                 </div>
               </div>
             </div>
+            </FadeInUp>
             );
           })}
         </div>

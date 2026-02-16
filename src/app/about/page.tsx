@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  FadeInUp,
+  ImageReveal,
+  StaggerContainer,
+  StaggerItem,
+  HoverScale,
+} from "@/components/animations";
 
 const COUNTRY_CODES = [
   { code: "+91", country: "India" },
@@ -78,6 +85,7 @@ export default function About() {
 
       {/* Frame 1321314791 - Banner: h 431px, starts right after nav (no top gap) */}
       <section className="relative w-full overflow-hidden">
+        <ImageReveal>
         <div className="relative w-full aspect-[1440/431] min-h-[220px] sm:min-h-[300px] lg:min-h-[431px]">
           <Image
             src="/images/about_banner.png"
@@ -88,11 +96,13 @@ export default function About() {
             className="object-cover object-center lg:object-[50%_20%]"
           />
         </div>
+        </ImageReveal>
       </section>
 
       {/* Frame 1321314852 - About text block: top 713px, below banner (40px gap) */}
       <section className="relative w-full mt-10 px-4 sm:px-6 lg:px-[100px] max-w-[1440px] mx-auto">
         <div className="max-w-[1240px] mx-auto grid gap-8 lg:grid-cols-2 items-start">
+        <FadeInUp>
           <div className="flex flex-col">
             <p className="text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] mb-2">
               About Manvian Micro Spaces
@@ -102,12 +112,15 @@ export default function About() {
               <span className="text-primary">Grow</span>
             </h1>
           </div>
+        </FadeInUp>
+          <FadeInUp delay={0.15}>
           <p className="text-[#676767] text-lg sm:text-2xl leading-8 sm:leading-9">
             Manvian Spaces is more than a coworking space—it&apos;s a thoughtfully
             designed ecosystem for creators, startups, freelancers, and growing
             teams. Built to inspire ideas, encourage collaboration, and support
             smarter ways of working.
           </p>
+          </FadeInUp>
         </div>
       </section>
 
@@ -117,6 +130,7 @@ export default function About() {
         style={{ background: "rgba(29, 188, 231, 0.04)" }}
       >
         <div className="max-w-[1240px] mx-auto flex flex-col items-center gap-10">
+          <FadeInUp>
           <div className="text-center">
             <p className="text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] mb-2">
               What Drives Us
@@ -127,8 +141,11 @@ export default function About() {
               <span className="text-[#343434]"> & Direction</span>
             </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
+          </FadeInUp>
+          <StaggerContainer className="flex flex-wrap justify-center gap-8" staggerDelay={0.15}>
             {/* Our Vision - blue card */}
+            <StaggerItem>
+            <HoverScale>
             <div className="w-full max-w-[382px] p-4 rounded-[24px] bg-primary shadow-[10px_10px_32px_rgba(0,0,0,0.25)] flex flex-col items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1DBCE7" strokeWidth="2" strokeLinecap="round">
@@ -143,7 +160,11 @@ export default function About() {
                 people and businesses.
               </p>
             </div>
+            </HoverScale>
+            </StaggerItem>
             {/* Our Mission - white card */}
+            <StaggerItem>
+            <HoverScale>
             <div className="w-full max-w-[382px] p-4 rounded-[24px] bg-white/50 border border-[#676767] flex flex-col items-center gap-4">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" width="79" height="79" rx="39.5" stroke="#343434"/>
@@ -160,7 +181,11 @@ export default function About() {
                 productivity, creativity, and meaningful collaboration.
               </p>
             </div>
+            </HoverScale>
+            </StaggerItem>
             {/* Our Values - white card */}
+            <StaggerItem>
+            <HoverScale>
             <div className="w-full max-w-[382px] p-4 rounded-[24px] bg-white/50 border border-[#676767] flex flex-col items-center gap-4">
               <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" width="79" height="79" rx="39.5" stroke="#343434"/>
@@ -176,18 +201,22 @@ export default function About() {
                 work better together.
               </p>
             </div>
-          </div>
+            </HoverScale>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Franchise & Collaboration */}
       <section className="relative py-16 lg:py-24 px-4 sm:px-6 lg:px-[100px] overflow-hidden">
+        <FadeInUp>
         <div
           className="hidden lg:block absolute w-[303px] h-[303px] left-1/2 translate-x-[130px] top-[460px] pointer-events-none"
           style={{ background: "rgba(29, 188, 231, 0.66)", filter: "blur(450px)" }}
           aria-hidden
         />
         <div className="max-w-[1240px] mx-auto flex flex-col items-center gap-10 relative z-10">
+          <FadeInUp delay={0.1}>
           <div className="text-center w-full max-w-[841px]">
             <p className="text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] mb-2">
               Get In Touch
@@ -197,6 +226,7 @@ export default function About() {
               <span className="text-primary">Collaboration</span>
             </h2>
           </div>
+          </FadeInUp>
 
           <div className="w-full grid grid-cols-1 lg:grid-cols-[609px_591px] gap-8 lg:gap-10 items-start">
             {/* Contact form */}
@@ -346,6 +376,7 @@ export default function About() {
             </div>
           </div>
         </div>
+        </FadeInUp>
       </section>
 
       <Footer />

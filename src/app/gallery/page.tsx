@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  FadeInUp,
+  StaggerContainer,
+  StaggerItem,
+  HoverScale,
+} from "@/components/animations";
 
 const galleryImages = [
   { src: "/images/Gallery/Gallery-1.png", alt: "Workspace with yellow accents and whiteboard", colSpan: "lg:col-span-5" },
@@ -44,6 +50,7 @@ export default function Gallery() {
       <section className="relative px-4 sm:px-6 lg:px-[100px] py-16 lg:py-24">
         <div className="max-w-[1240px] mx-auto">
           {/* Mobile/tablet: stacked, readable */}
+          <FadeInUp>
           <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-center justify-items-center content-center min-h-[280px] sm:min-h-[320px]">
             <div className="flex flex-col items-center sm:items-start text-center sm:text-left order-1">
               <span className="text-primary font-semibold text-5xl sm:text-6xl leading-tight">
@@ -72,8 +79,10 @@ export default function Gallery() {
               </span>
             </div>
           </div>
+          </FadeInUp>
 
           {/* Desktop: match Figma alignment/positions */}
+          <FadeInUp delay={0.1}>
           <div className="hidden lg:block">
             <div className="relative mx-auto w-full max-w-[1029px] h-[366px]">
               {/* WORK */}
@@ -123,28 +132,35 @@ export default function Gallery() {
               </div>
             </div>
           </div>
+          </FadeInUp>
         </div>
       </section>
 
       {/* Gallery grid - responsive, uses images from Gallery folder */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] pb-20 lg:pb-28">
         <div className="max-w-[1240px] mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[462px] gap-4 sm:gap-5 lg:gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[462px] gap-4 sm:gap-5 lg:gap-6" staggerDelay={0.08}>
             {galleryImages.map((img) => (
-              <div
+              <StaggerItem
                 key={img.src}
-                className={`relative w-full aspect-[4/3] sm:aspect-[503/462] lg:aspect-auto lg:h-full bg-[#E4E4E4] rounded-xl lg:rounded-2xl overflow-hidden min-h-[200px] sm:min-h-[220px] ${img.colSpan}`}
+                className={`${img.colSpan}`}
+              >
+                <HoverScale>
+              <div
+                className="relative w-full aspect-[4/3] sm:aspect-[503/462] lg:aspect-auto lg:h-full bg-[#E4E4E4] rounded-xl lg:rounded-2xl overflow-hidden min-h-[200px] sm:min-h-[220px]"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
+              </HoverScale>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
