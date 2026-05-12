@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
@@ -10,6 +13,8 @@ import {
   StaggerItem,
   HoverScale,
 } from "@/components/animations";
+import BookingModal from "@/components/BookingModal";
+
 
 const serviceList = [
   {
@@ -254,6 +259,7 @@ function ServiceIcon({ name }: { name: string }) {
 }
 
 export default function Services() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
   return (
     <div className="relative min-h-screen bg-white w-full overflow-x-hidden">
       {/* Hero - Top banner including header, full-width bg & grid lines */}
@@ -282,22 +288,25 @@ export default function Services() {
             <div>
               <h1 className="text-3xl sm:text-4xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] mb-6 max-w-[597px]">
                 <span className="text-primary">Smart, Affordable</span>{" "}
-                <span className="text-[#676767]">Spaces for Growing Ideas</span>
+                <span className="text-primary">Spaces</span>{" "}
+                <span className="text-[#343434]">for</span>{" "}
+                <span className="text-[#343434]">Growing</span>{" "}
+                <span className="text-primary">Ideas</span>
               </h1>
               <p className="text-[#676767] text-lg sm:text-2xl leading-7 sm:leading-[29px] mb-8 max-w-[658px]">
                 Explore a range of spaces crafted to support productivity and
                 collaboration.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/book"
-                  className="inline-flex items-center justify-center px-6 py-4 bg-primary text-white font-semibold text-lg sm:text-[20px] rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity border border-primary"
+              <div className="flex items-center gap-3 sm:gap-4">
+                <button
+                  onClick={() => setIsBookingOpen(true)}
+                  className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-primary text-white font-semibold text-[15px] sm:text-[20px] rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity border border-primary whitespace-nowrap"
                 >
                   Book Your space
-                </Link>
+                </button>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-6 py-4 bg-white text-primary font-semibold text-lg sm:text-[20px] rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:bg-primary/5 transition-colors border-[1.2px] border-primary"
+                  className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-white text-primary font-semibold text-[15px] sm:text-[20px] rounded-[48px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:bg-primary/5 transition-colors border-[1.2px] border-primary whitespace-nowrap"
                 >
                   Contact Us
                 </Link>
@@ -333,8 +342,17 @@ export default function Services() {
                 } items-center`}
               >
               <div className="flex-1 w-full max-w-[586px] lg:max-w-none">
-                <h2 className="text-2xl sm:text-3xl lg:text-[48px] font-semibold leading-tight lg:leading-[59px] text-[#343434] mb-4">
-                  {service.title}
+                <h2 className="text-2xl sm:text-3xl lg:text-[48px] font-semibold leading-tight lg:leading-[59px] mb-4">
+                  {(() => {
+                    const words = service.title.split(" ");
+                    const lastWord = words.pop();
+                    return (
+                      <>
+                        <span className="text-[#343434]">{words.join(" ")} </span>
+                        <span className="text-primary">{lastWord}</span>
+                      </>
+                    );
+                  })()}
                 </h2>
                 <p className="text-[#676767] text-base sm:text-2xl leading-7 sm:leading-8 mb-6">
                   {service.description}
@@ -358,28 +376,30 @@ export default function Services() {
                   </ul>
                 </div>
               </div>
-              <div className="flex-1 w-full max-w-[586px] lg:max-w-[713px]">
-                <div className="relative w-full aspect-[713/480] overflow-visible">
-                  {/* Blue offset background (Figma-style). Reverses on alternating rows. */}
+              <div className="flex-1 w-full max-w-[586px] lg:max-w-[713px] mt-6 lg:mt-0">
+                <div 
+                  className={`relative w-[calc(100%-16px)] sm:w-[calc(100%-24px)] aspect-[6/5] sm:aspect-[713/480] ${
+                    isReversed ? "ml-auto" : "mr-auto"
+                  }`}
+                >
+                  {/* Blue offset background */}
                   <div
-                    className={`absolute top-[12.5%] bottom-0 bg-primary ${
-                      isReversed ? "left-0 right-[16.8%]" : "right-0 left-[16.8%]"
+                    className={`absolute w-full h-full bg-primary ${
+                      isReversed
+                        ? "top-4 sm:top-6 -left-4 sm:-left-6"
+                        : "top-4 sm:top-6 -right-4 sm:-right-6"
                     }`}
                     aria-hidden
                   />
 
-                  {/* Image frame (grey) */}
-                  <div
-                    className={`absolute top-[2.1%] bottom-[2.1%] bg-[#D2D2D2] overflow-hidden ${
-                      isReversed ? "right-0 left-[2.8%]" : "left-0 right-[2.8%]"
-                    }`}
-                  >
+                  {/* Image frame */}
+                  <div className="absolute inset-0 bg-[#D2D2D2] overflow-hidden z-10">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 600px"
                     />
                   </div>
                 </div>
@@ -392,6 +412,7 @@ export default function Services() {
       </section>
 
       <Footer />
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </div>
   );
 }

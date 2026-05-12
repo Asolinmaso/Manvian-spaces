@@ -9,14 +9,14 @@ import {
 } from "@/components/animations";
 
 const galleryImages = [
-  { src: "/images/Gallery/Gallery-1.png", alt: "Workspace with yellow accents and whiteboard", colSpan: "lg:col-span-5" },
-  { src: "/images/Gallery/Gallery-2.png", alt: "Collaborative team workspace", colSpan: "lg:col-span-7" },
-  { src: "/images/Gallery/Gallery-3.png", alt: "Conference room with large screen", colSpan: "lg:col-span-12", fullWidth: true },
-  { src: "/images/Gallery/Gallery-4.png", alt: "Meeting room setup", colSpan: "lg:col-span-7" },
-  { src: "/images/Gallery/Gallery-5.png", alt: "Modern office space", colSpan: "lg:col-span-5" },
-  { src: "/images/Gallery/Gallery-6.png", alt: "Study and reading area", colSpan: "lg:col-span-4" },
-  { src: "/images/Gallery/Gallery-7.png", alt: "Professional meeting", colSpan: "lg:col-span-4" },
-  { src: "/images/Gallery/Gallery-8.png", alt: "Open office workspace", colSpan: "lg:col-span-4" },
+  { src: "/images/Gallery/Gallery-1.png", alt: "Workspace with yellow accents and whiteboard", colSpan: "col-span-12 md:col-span-5" },
+  { src: "/images/Gallery/Gallery-2.png", alt: "Collaborative team workspace", colSpan: "col-span-12 md:col-span-7" },
+  { src: "/images/Gallery/Gallery-3.png", alt: "Conference room with large screen", colSpan: "col-span-12 md:col-span-12" },
+  { src: "/images/Gallery/Gallery-4.png", alt: "Meeting room setup", colSpan: "col-span-12 md:col-span-7" },
+  { src: "/images/Gallery/Gallery-5.png", alt: "Modern office space", colSpan: "col-span-12 md:col-span-5" },
+  { src: "/images/Gallery/Gallery-6.png", alt: "Study and reading area", colSpan: "col-span-12 md:col-span-4" },
+  { src: "/images/Gallery/Gallery-7.png", alt: "Professional meeting", colSpan: "col-span-12 md:col-span-4" },
+  { src: "/images/Gallery/Gallery-8.png", alt: "Open office workspace", colSpan: "col-span-12 md:col-span-4" },
 ];
 
 export default function Gallery() {
@@ -51,32 +51,41 @@ export default function Gallery() {
         <div className="max-w-[1240px] mx-auto">
           {/* Mobile/tablet: stacked, readable */}
           <FadeInUp>
-          <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-center justify-items-center content-center min-h-[280px] sm:min-h-[320px]">
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left order-1">
-              <span className="text-primary font-semibold text-5xl sm:text-6xl leading-tight">
+          <div className="lg:hidden grid grid-cols-[1fr_1fr] gap-x-4 gap-y-6 w-full max-w-[380px] mx-auto py-6 items-center">
+            {/* Row 1 */}
+            <div className="text-left">
+              <span className="text-primary font-bold text-[36px] sm:text-[44px] leading-none tracking-wide">
                 WORK
               </span>
-              <p className="text-[#676767] font-semibold text-base sm:text-xl leading-7 mt-2">
-                Flexible spaces for every need.
-              </p>
             </div>
-            <div className="flex flex-col items-center sm:items-end text-center sm:text-right order-2">
-              <span className="text-black font-bold text-5xl sm:text-6xl leading-tight">
+            <div className="text-left">
+              <span className="text-black font-bold text-[36px] sm:text-[44px] leading-none tracking-wide">
                 CREATE
               </span>
             </div>
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left order-3">
-              <span className="text-primary font-semibold text-5xl sm:text-6xl leading-tight">
-                FOCUS
-              </span>
-              <p className="text-[#676767] font-semibold text-base sm:text-xl leading-7 mt-2">
-                Spaces crafted for productivity
+
+            {/* Row 2 */}
+            <div className="text-right">
+              <p className="text-[#676767] font-medium text-[14px] sm:text-[16px] leading-snug">
+                Flexible spaces<br />for every need.
               </p>
             </div>
-            <div className="flex flex-col items-center sm:items-end text-center sm:text-right order-4">
-              <span className="text-black font-bold text-5xl sm:text-6xl leading-tight">
+            <div className="text-left">
+              <span className="text-primary font-bold text-[36px] sm:text-[44px] leading-none tracking-wide">
+                FOCUS
+              </span>
+            </div>
+
+            {/* Row 3 */}
+            <div className="text-left">
+              <span className="text-black font-bold text-[36px] sm:text-[44px] leading-none tracking-wide">
                 GROW
               </span>
+            </div>
+            <div className="text-left">
+              <p className="text-[#676767] font-medium text-[14px] sm:text-[16px] leading-snug">
+                Spaces crafted<br />for productivity
+              </p>
             </div>
           </div>
           </FadeInUp>
@@ -139,22 +148,22 @@ export default function Gallery() {
       {/* Gallery grid - responsive, uses images from Gallery folder */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] pb-20 lg:pb-28">
         <div className="max-w-[1240px] mx-auto">
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[462px] gap-4 sm:gap-5 lg:gap-6" staggerDelay={0.08}>
+          <StaggerContainer className="grid grid-cols-12 md:auto-rows-[300px] lg:auto-rows-[462px] gap-4 sm:gap-5 lg:gap-6" staggerDelay={0.08}>
             {galleryImages.map((img) => (
               <StaggerItem
                 key={img.src}
                 className={`${img.colSpan}`}
               >
-                <HoverScale>
+                <HoverScale className="w-full h-full">
               <div
-                className="relative w-full aspect-[4/3] sm:aspect-[503/462] lg:aspect-auto lg:h-full bg-[#E4E4E4] rounded-xl lg:rounded-2xl overflow-hidden min-h-[200px] sm:min-h-[220px]"
+                className="relative w-full h-[250px] md:h-full bg-[#E4E4E4] rounded-xl lg:rounded-2xl overflow-hidden"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 100vw"
                 />
               </div>
               </HoverScale>
