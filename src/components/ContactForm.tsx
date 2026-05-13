@@ -74,6 +74,8 @@ const COUNTRY_CODES = [
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedCode, setSelectedCode] = useState("+91");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -141,39 +143,78 @@ export default function ContactForm() {
         className="h-[42px] sm:h-[44px] px-4 border border-[#AFAFAF] rounded-lg text-[16px] sm:text-[18px] text-[#676767] outline-none focus:border-primary disabled:opacity-60"
       />
 
-      <div className="h-[44px] flex items-center border border-[#AFAFAF] rounded-lg overflow-hidden bg-white">
-        <div className="relative">
-          <select
-            aria-label="Country code"
-            name="countryCode"
-            className="h-[44px] pl-3 pr-7 text-[16px] text-[#676767] bg-transparent outline-none appearance-none w-[72px]"
-            defaultValue="+91"
+      <div className="relative">
+        <div className="h-[44px] flex items-center border border-[#AFAFAF] rounded-lg bg-white overflow-hidden focus-within:border-primary">
+          <div
+            className="h-full flex items-center outline-none"
+            tabIndex={0}
+            onBlur={(e) => {
+              // Only close if the new focus target is outside this relative wrapper
+              if (!e.currentTarget.parentElement?.contains(e.relatedTarget)) {
+                setIsDropdownOpen(false);
+              }
+            }}
           >
-            {COUNTRY_CODES.map(({ code }) => (
-              <option key={code} value={code}>
-                {code}
-              </option>
-            ))}
-          </select>
-          <svg
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#676767] pointer-events-none"
-            aria-hidden
-          >
-            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+            <input type="hidden" name="countryCode" value={selectedCode} />
+            <button
+              type="button"
+              className="h-full pl-3 pr-7 text-[16px] text-[#676767] bg-transparent outline-none w-[72px] flex items-center"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              {selectedCode}
+            </button>
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              className={`absolute left-[54px] top-1/2 -translate-y-1/2 text-[#676767] pointer-events-none transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+              aria-hidden
+            >
+              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </div>
+
+          <div className="w-px h-6 bg-[#A5A5A5]" aria-hidden />
+          <input
+            name="contact"
+            type="tel"
+            placeholder="Contact"
+            required
+            pattern="^[0-9]+$"
+            minLength={7}
+            maxLength={15}
+            title="Please enter a valid phone number containing only digits"
+            disabled={status === "loading"}
+            onInput={(e) => {
+              e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+            }}
+            className="h-full flex-1 min-w-0 px-4 text-[16px] sm:text-[18px] text-[#676767] outline-none disabled:opacity-60 bg-transparent"
+          />
         </div>
-        <div className="w-px h-6 bg-[#A5A5A5]" aria-hidden />
-        <input
-          name="contact"
-          type="tel"
-          placeholder="Contact"
-          disabled={status === "loading"}
-          className="h-[44px] flex-1 px-4 text-[16px] sm:text-[18px] text-[#676767] outline-none disabled:opacity-60"
-        />
+
+        {isDropdownOpen && (
+          <div
+            className="absolute top-[calc(100%+4px)] left-0 w-[140px] max-h-[220px] overflow-y-auto bg-white border border-[#AFAFAF] rounded-lg shadow-lg z-50"
+            tabIndex={-1}
+          >
+            {COUNTRY_CODES.map(({ code, country }) => (
+              <button
+                key={country}
+                type="button"
+                className="w-full text-left px-3 py-2 text-[14px] text-[#676767] hover:bg-gray-100 outline-none flex justify-between items-center"
+                onMouseDown={(e) => {
+                  e.preventDefault(); // Prevent blur from firing before selection
+                  setSelectedCode(code);
+                  setIsDropdownOpen(false);
+                }}
+              >
+                <span className="font-medium text-black">{code}</span>
+                <span className="text-[10px] text-gray-500 truncate ml-2 text-right">{country}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <textarea
@@ -195,7 +236,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-fit px-6 py-4 bg-primary text-white font-semibold text-[18px] sm:text-[20px] rounded-[32px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity disabled:opacity-70"
+        className="w-[136px] sm:w-[180px] h-[48px] sm:h-[52px] bg-primary text-white font-semibold text-[17px] sm:text-[20px] rounded-[32px] shadow-[0px_4px_10px_rgba(0,0,0,0.25)] hover:opacity-90 transition-opacity disabled:opacity-70 flex items-center justify-center"
       >
         {status === "loading" ? "Sending..." : "Submit"}
       </button>
