@@ -64,7 +64,7 @@ export default function Contact() {
 
       {/* Form + Info card */}
       <section id="contact-form" className="relative px-4 sm:px-6 lg:px-[100px] py-8 sm:py-16">
-        <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-baseline">
           {/* Form */}
           <FadeInUp className="order-2 lg:order-1">
             <div className="w-full">

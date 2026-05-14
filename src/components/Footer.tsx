@@ -27,7 +27,7 @@ export default function Footer() {
           background: "linear-gradient(90deg, #42CCFF 0%, #0883D7 100%)",
         }}
       >
-        <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+        <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] gap-10 lg:gap-16">
           <div>
             <h3 className="text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-tight lg:leading-[48px] mb-6 sm:mb-8 max-w-[541px]">
               Flexible Work-spaces for Every Need.
@@ -44,7 +44,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div>
+          <div className="lg:pl-8">
             <h4 className="text-white font-medium text-lg sm:text-2xl mb-4 sm:mb-6">
               Quick Links
             </h4>
@@ -61,9 +61,14 @@ export default function Footer() {
               <h4 className="text-white font-medium text-lg sm:text-2xl mb-4 sm:mb-6">
                 Address
               </h4>
-              <p className="text-white text-base sm:text-[20px] leading-7 font-normal max-w-[380px]">
+              <a
+                href="https://www.google.com/maps/place/No.4,+1st+floor,+Alamathi+main+road,+New+vellanur,+Avadi,+Chennai-600062/@13.1670868,80.1132049,17z/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white text-base sm:text-[20px] leading-7 font-normal max-w-[380px] hover:underline block"
+              >
                 No.4, 1st floor, Alamathi main road, New vellanur, Avadi, Chennai-600062
-              </p>
+              </a>
             </div>
             <div>
               <h4 className="text-white font-medium text-lg sm:text-2xl mb-4 sm:mb-6">
