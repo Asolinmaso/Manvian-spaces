@@ -33,7 +33,7 @@ export default function About() {
 
       {/* Frame 1321314852 - About text block: top 713px, below banner (40px gap) */}
       <section className="relative w-full mt-10 px-4 sm:px-6 lg:px-[100px] max-w-[1440px] mx-auto">
-        <div className="max-w-[1240px] mx-auto grid gap-8 lg:grid-cols-2 items-start">
+        <div className="max-w-[1240px] mx-auto grid gap-8 lg:gap-16 lg:grid-cols-2 items-baseline">
           <FadeInUp>
             <div className="flex flex-col">
               <p className="text-[#676767] text-lg sm:text-2xl leading-snug sm:leading-[29px] mb-2">
@@ -161,7 +161,7 @@ export default function About() {
               </div>
             </FadeInUp>
 
-            <div className="w-full grid grid-cols-1 lg:grid-cols-[609px_591px] gap-8 lg:gap-10 items-start">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-[609px_591px] gap-8 lg:gap-16 items-baseline">
               {/* Contact form */}
               <div className="w-full p-6 rounded-2xl border border-[#A5A5A5] bg-white flex flex-col gap-6">
                 <h3 className="text-[#343434] font-semibold text-[22px] sm:text-4xl lg:text-[48px] leading-tight lg:leading-[59px] whitespace-nowrap sm:whitespace-normal tracking-tight">

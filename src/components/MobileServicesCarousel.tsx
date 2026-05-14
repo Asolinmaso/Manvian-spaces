@@ -48,7 +48,7 @@ export default function MobileServicesCarousel({
       <div className="flex items-center gap-6 mt-4">
         <button
           onClick={() => scroll("left")}
-          className="w-[52px] h-[52px] rounded-full border-[1.5px] border-[#AFAFAF] flex items-center justify-center bg-white text-[#676767] hover:bg-gray-50 transition-colors"
+          className="w-[52px] h-[52px] rounded-full border-[1.5px] border-[#AFAFAF] flex items-center justify-center bg-white text-[#676767] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
           aria-label="Previous slide"
         >
           <svg
@@ -66,7 +66,7 @@ export default function MobileServicesCarousel({
         </button>
         <button
           onClick={() => scroll("right")}
-          className="w-[52px] h-[52px] rounded-full bg-primary flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+          className="w-[52px] h-[52px] rounded-full border-[1.5px] border-[#AFAFAF] flex items-center justify-center bg-white text-[#676767] hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
           aria-label="Next slide"
         >
           <svg

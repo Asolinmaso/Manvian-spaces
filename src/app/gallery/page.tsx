@@ -93,47 +93,47 @@ export default function Gallery() {
           {/* Desktop: match Figma alignment/positions */}
           <FadeInUp delay={0.1}>
           <div className="hidden lg:block">
-            <div className="relative mx-auto w-full max-w-[1029px] h-[366px]">
+            <div className="relative mx-auto w-full max-w-[1029px] h-[400px] gallery-hero">
               {/* WORK */}
               <div className="absolute left-0 top-0">
-                <div className="text-primary font-semibold text-[111px] leading-[135px]">
+                <div className="text-primary font-bold text-[111px] leading-none tracking-tight">
                   WORK
                 </div>
               </div>
 
-              {/* CREATE (calc(50% - 462/2 + 131.5) ≈ 415px in 1029px container) */}
-              <div className="absolute left-[415px] top-0">
-                <div className="text-black font-bold text-[111px] leading-[135px]">
+              {/* CREATE */}
+              <div className="absolute left-[460px] top-0">
+                <div className="text-black font-bold text-[111px] leading-none tracking-tight">
                   CREATE
                 </div>
               </div>
 
               {/* FOCUS */}
-              <div className="absolute left-[610px] top-[122px]">
-                <div className="text-primary font-semibold text-[111px] leading-[135px]">
+              <div className="absolute left-[620px] top-[115px]">
+                <div className="text-primary font-bold text-[111px] leading-none tracking-tight">
                   FOCUS
                 </div>
               </div>
 
               {/* Caption 1 */}
-              <div className="absolute left-[353px] top-[169px] w-[201px]">
-                <div className="text-[#676767] font-semibold text-2xl leading-[29px]">
+              <div className="absolute left-[405px] top-[175px] w-[220px]">
+                <div className="text-[#676767] font-medium text-[24px] leading-[29px] text-center">
                   Flexible spaces
                   <br />
                   for every need.
                 </div>
               </div>
 
-              {/* GROW (calc(50% - 388/2 - 95.5) ≈ 225px) */}
-              <div className="absolute left-[225px] top-[269px]">
-                <div className="text-black font-bold text-[111px] leading-[135px]">
+              {/* GROW */}
+              <div className="absolute left-[220px] top-[270px]">
+                <div className="text-black font-bold text-[111px] leading-none tracking-tight">
                   GROW
                 </div>
               </div>
 
               {/* Caption 2 */}
-              <div className="absolute left-[655px] top-[314px] w-[201px]">
-                <div className="text-[#676767] font-semibold text-2xl leading-[29px]">
+              <div className="absolute left-[640px] top-[315px] w-[240px]">
+                <div className="text-[#676767] font-medium text-[24px] leading-[29px] text-center">
                   Spaces crafted
                   <br />
                   for productivity

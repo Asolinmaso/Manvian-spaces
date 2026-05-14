@@ -7,6 +7,14 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      'desktop': '1440px',
+      '2xl': '1536px',
+    },
     extend: {
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

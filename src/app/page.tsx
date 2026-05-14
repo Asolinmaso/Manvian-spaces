@@ -162,7 +162,7 @@ export default function Home() {
             <p className="text-white text-lg sm:text-2xl font-normal mb-3 sm:mb-4">
               Space with Opportunities
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] max-w-[722px]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-tight lg:leading-[78px] max-w-[800px]">
               <span className="text-primary">Work </span>
               <span className="text-white">Starts </span>
               <br className="hidden sm:block" />
@@ -183,7 +183,7 @@ export default function Home() {
 
       {/* Inspiring Workspaces Section */}
       <section className="relative px-4 sm:px-6 lg:px-[100px] py-16 lg:py-20 max-w-[1440px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-baseline">
           <FadeInUp>
             <div>
               <p className="text-[#676767] text-lg sm:text-2xl font-normal mb-2">
@@ -211,7 +211,7 @@ export default function Home() {
           </FadeInUp>
           <FadeInUp delay={0.15}>
             <div className="lg:pt-0 pt-4">
-              <p className="text-[#676767] text-lg sm:text-2xl leading-8 sm:leading-9 mb-8 sm:mb-10 max-w-[592px]">
+              <p className="text-[#676767] text-lg sm:text-2xl leading-8 sm:leading-9 mb-8 sm:mb-10 max-w-[592px] text-justify">
                 At Manvian Spaces, we create more than just workspaces. We build
                 flexible, thoughtfully designed environments where individuals and
                 businesses come together to collaborate, innovate, and grow —
@@ -293,9 +293,9 @@ export default function Home() {
 
       {/* Amenities Section */}
       <section className="relative w-full py-16 px-4 sm:px-6 lg:px-[100px]">
-        <div className="max-w-[1240px] mx-auto lg:hidden">
+        <div className="max-w-[1240px] mx-auto xl:hidden">
           <FadeInUp>
-            <h2 className="text-center text-2xl sm:text-3xl font-semibold leading-tight max-w-[608px] mx-auto">
+            <h2 className="text-center text-2xl sm:text-3xl lg:text-[40px] font-semibold leading-tight max-w-[800px] mx-auto mb-4 desktop:mb-0">
               <span className="text-primary">Amenities</span>{" "}
               <span className="text-[#343434]">offered at</span>
               <br />
@@ -315,8 +315,8 @@ export default function Home() {
           </StaggerContainer>
         </div>
 
-        <div className="hidden lg:block">
-          <div className="relative mx-auto max-w-[1336px] h-[680px]">
+        <div className="hidden xl:block">
+          <div className="relative mx-auto max-w-[1336px] h-[680px] amenities-container">
             <FadeInUp>
               <h2 className="absolute left-[48px] top-0 text-[64px] leading-[78px] font-semibold max-w-[608px]">
                 <span className="text-primary">Amenities </span>
